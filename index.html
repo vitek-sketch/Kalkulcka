@@ -40,6 +40,13 @@
     </style>
 
     <script>
+        function Mocnina() {
+    var x = document.F1.X.value;
+    var y = document.F1.Y.value;
+
+    document.getElementById("vysledek").innerHTML =
+        "Výsledek: " + (x ** y);
+}
         function Krat() {
             var x = document.F1.X.value;
             var y = document.F1.Y.value;
@@ -82,6 +89,7 @@
     <input type="button" value="Děleno" onclick="Deleno()">
     <input type="button" value="Mínus" onclick="Minus()">
     <input type="button" value="Plus" onclick="Plus()">
+    <input type="button" value="Mocnina" onclick="Mocnina()">
 
     <p id="vysledek">Výsledek:</p>
 
