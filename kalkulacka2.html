@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+                body{
+            background-image: url("cokl2.jpg");
+            background-size:cover;
+        }
+    </style>
+    <script>
+function Krat()
+{
+    var x=document.F1.X.value;
+    var y=document.F1.Y.value;
+
+    document.getElementById("vysledek").innerHTML =
+        "Výsledek: " + (x*y);
+}
+
+function Deleno()
+{
+    var x=document.F1.X.value;
+    var y=document.F1.Y.value;
+
+    document.getElementById("vysledek").innerHTML =
+        "Výsledek: " + (x/y);
+}
+
+function Minus()
+{
+    var x=document.F1.X.value;
+    var y=document.F1.Y.value;
+
+    document.getElementById("vysledek").innerHTML =
+        "Výsledek: " + (x-y);
+}
+
+function Plus()
+{
+    var x=document.F1.X.value*1;
+    var y=document.F1.Y.value*1;
+
+    document.getElementById("vysledek").innerHTML =
+        "Výsledek: " + (x+y);
+}
+        function Feedback()
+        {
+            var hodnocení=document.F1.X.value*1;
+                alert("Thanks for using my calculator, don't forget to leave me a feedback");
+        }
+    </script>
+</head>
+<body>
+    <h1>Vitek's ametur calcutator</h1>
+    <form name="F1">
+    x:
+    <input type="text" name="X">
+    y:
+    <input type="text" name="Y">
+
+    <input type="button" value="Multyplying" onclick="Krat()";>
+    <input type="button" value="Deviding" onclick="Deleno()";>
+    <input type="button" value="Minus" onclick="Minus()";>
+    <input type="button" value="Plus" onclick="Plus()";>
+    <br>
+    <p id="vysledek">Výsledek:</p>
+
+    <br>
+    hodnocení:
+    <input type="text" name="Ohodnoť nás od 1 do 10 ">
+    <input type="button" value="Feedback" onclick="Feedback()";>
+
+</form>
+</body>
+</html>
