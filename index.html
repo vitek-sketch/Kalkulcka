@@ -1,73 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vítkova kalkulačka</title>
+
     <style>
-                body{
+        body {
+            margin: 0;
+            font-family: Arial;
             background-image: url("cokl2.jpg");
-            background-size:cover;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 50px;
+            background: rgba(0,0,0,0.5);
+            display: inline-block;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        input {
+            margin: 5px;
+            padding: 5px;
         }
     </style>
+
     <script>
-        <script type="module">
-}
+        function Krat() {
+            var x = document.F1.X.value;
+            var y = document.F1.Y.value;
+            document.getElementById("vysledek").innerHTML = "Výsledek: " + (x * y);
+        }
 
-function Deleno()
-{
-    var x=document.F1.X.value;
-    var y=document.F1.Y.value;
+        function Deleno() {
+            var x = document.F1.X.value;
+            var y = document.F1.Y.value;
+            document.getElementById("vysledek").innerHTML = "Výsledek: " + (x / y);
+        }
 
-    document.getElementById("vysledek").innerHTML =
-        "Výsledek: " + (x/y);
-}
+        function Minus() {
+            var x = document.F1.X.value;
+            var y = document.F1.Y.value;
+            document.getElementById("vysledek").innerHTML = "Výsledek: " + (x - y);
+        }
 
-function Minus()
-{
-    var x=document.F1.X.value;
-    var y=document.F1.Y.value;
-
-    document.getElementById("vysledek").innerHTML =
-        "Výsledek: " + (x-y);
-}
-
-function Plus()
-{
-    var x=document.F1.X.value*1;
-    var y=document.F1.Y.value*1;
-
-    document.getElementById("vysledek").innerHTML =
-        "Výsledek: " + (x+y);
-}
-        function Feedback()
-        {
-            var hodnocení=document.F1.X.value*1;
-                alert("Děkuji za používání mé kalkulačky.");
+        function Plus() {
+            var x = document.F1.X.value * 1;
+            var y = document.F1.Y.value * 1;
+            document.getElementById("vysledek").innerHTML = "Výsledek: " + (x + y);
         }
     </script>
 </head>
+
 <body>
-    <h1>Vítkova kalkulačka </h1>
-    <form name="F1">
+
+<h1>Vítkova kalkulačka 🐶</h1>
+
+<form name="F1">
     x:
     <input type="text" name="X">
     y:
     <input type="text" name="Y">
 
-    <input type="button" value="Krát" onclick="Krat()";>
-    <input type="button" value="Děleno" onclick="Deleno()";>
-    <input type="button" value="Mínus" onclick="Minus()";>
-    <input type="button" value="Plus" onclick="Plus()";>
     <br>
+
+    <input type="button" value="Krát" onclick="Krat()">
+    <input type="button" value="Děleno" onclick="Deleno()">
+    <input type="button" value="Mínus" onclick="Minus()">
+    <input type="button" value="Plus" onclick="Plus()">
+
     <p id="vysledek">Výsledek:</p>
 
-    <br>
-    hodnocení:
-    <input type="text" name="Ohodnoť nás od 1 do 10 ">
-    <input type="button" value="Feedback" onclick="Feedback()";>
-Feedback ještě musím dodělat
+    <hr>
+
+    <h3>Feedback</h3>
+    <input type="text" name="hodnoceni" placeholder="1–10">
+    <input type="button" value="Odeslat feedback" onclick="Feedback()">
 </form>
+
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "TVŮJ KEY",
+    authDomain: "kalkulacka-github.firebaseapp.com",
+    projectId: "kalkulacka-github"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.Feedback = async function () {
+    let hodnoceni = document.F1.hodnoceni.value;
+
+    await addDoc(collection(db, "feedbacks"), {
+        text: hodnoceni,
+        time: new Date()
+    });
+
+    alert("Díky za feedback!");
+};
+</script>
+
 </body>
 </html>
