@@ -7,7 +7,6 @@
 <title>Vítkova kalkulačka</title>
 
 <style>
-
 body {
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
@@ -38,12 +37,14 @@ body {
 }
 
 form {
-
     background: rgba(255,255,255,0.08);
 
     backdrop-filter: blur(12px);
 
-    padding: 35px;
+    width: 500px;
+    max-width: 90vw;
+
+    padding: 30px;
 
     border-radius: 25px;
 
@@ -51,34 +52,29 @@ form {
         0 0 25px rgba(0,0,0,0.4),
         0 0 60px rgba(107,76,165,0.3);
 
-    width: 340px;
-
     text-align: center;
 }
 
 h1 {
+    font-size: 34px;
 
     margin-bottom: 25px;
-
-    font-size: 32px;
 
     text-shadow: 0 0 10px #b388ff;
 }
 
 label {
     display: block;
-    margin-top: 10px;
+
+    margin-top: 12px;
     margin-bottom: 5px;
 }
 
 input[type="number"],
 input[type="text"] {
-
-    width: 90%;
+    width: 80%;
 
     padding: 12px;
-
-    margin-bottom: 10px;
 
     border: none;
     border-radius: 12px;
@@ -96,14 +92,12 @@ input[type="text"] {
 
 input[type="number"]:focus,
 input[type="text"]:focus {
-
     background: rgba(255,255,255,0.18);
 
     transform: scale(1.02);
 }
 
 input[type="button"] {
-
     padding: 12px 15px;
 
     margin: 5px;
@@ -128,8 +122,8 @@ input[type="button"] {
     box-shadow: 0 0 10px rgba(123,92,255,0.4);
 }
 
+/* HOVER EFEKT */
 input[type="button"]:hover {
-
     transform: translateY(-3px) scale(1.05);
 
     box-shadow:
@@ -137,37 +131,43 @@ input[type="button"]:hover {
 }
 
 #vysledek {
+    margin-top: 25px;
 
-    margin-top: 20px;
+    padding: 15px;
 
-    font-size: 24px;
+    border-radius: 15px;
+
+    background: rgba(255,255,255,0.1);
+
+    font-size: 28px;
 
     font-weight: bold;
 
-    color: #cdb7ff;
+    color: white;
 
-    text-shadow: 0 0 10px #b388ff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
 
 h3 {
-    margin-top: 40px;
+    margin-top: 35px;
 }
-#vysledek {
-    margin-top: 20px;
-    font-size: 28px;
-    font-weight: bold;
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-}
+
 #historie {
-    margin-top: 15px;
+    margin-top: 10px;
     font-size: 14px;
-    opacity: 0.9;
 }
 
 #historie div {
-    padding: 3px;
+    padding: 4px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.feedback-box {
+    margin-top: 40px;
+}
+
+.feedback-box input[type="text"] {
+    width: 90%;
 }
 </style>
 
