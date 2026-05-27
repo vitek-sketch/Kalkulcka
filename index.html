@@ -134,16 +134,16 @@
         "Výsledek: " + Math.sqrt(x);
 }
         function Odmocnina2() {
-    var x = Number(document.F1.X.value);
+    var x = Number(document.F1.Y.value);
 
     document.getElementById("vysledek").innerHTML =
-        "Výsledek: " + Math.sqrt(x);
+        "Výsledek: " + Math.sqrt(y);
 }
         function Odmocnina3() {
-    var x = Number(document.F1.X.value);
+    var x = Number(document.F1.Z.value);
 
     document.getElementById("vysledek").innerHTML =
-        "Výsledek: " + Math.sqrt(x);
+        "Výsledek: " + Math.sqrt(z);
 }
 
     </script>
@@ -171,8 +171,11 @@
     <input type="button" value="Plus" onclick="Plus()">
     <br>
     <input type="button" value="Mocnina x" onclick="Mocnina()">
-    <input type="button" value="Odmocnina x" onclick="Odmocnina()">
     <input type="button" value="procenta x" onclick="Procenta()">
+    <br>
+        <input type="button" value="Odmocnina x" onclick="Odmocnina()">
+        <input type="button" value="Odmocnina y" onclick="Odmocnina2()">
+        <input type="button" value="Odmocnina z" onclick="Odmocnina3()">
   
     <p id="vysledek">Výsledek:</p>
 
