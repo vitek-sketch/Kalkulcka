@@ -231,8 +231,13 @@ function Prumer(){
         nums.reduce((a,b)=>a+b,0);
 
     setResult(sum / nums.length);
-}
+    function updateOperation(op){
+    let x = document.F1.X.value;
+    let y = document.F1.Y.value;
 
+    document.getElementById("operace").innerHTML =
+        `Operace: ${x} ${op} ${y}`;
+}
 </script>
 
 </head>
@@ -242,21 +247,24 @@ function Prumer(){
 <form name="F1">
 
 <h1>🐶 Vítkova Kalkulačka 🧮</h1>
-
+<div id="operace" style="margin-bottom:10px; font-size:18px; opacity:0.8;">
+Operace:
+</div>
+    
 <div class="kalk-grid">
 
     <!-- LEVÁ STRANA -->
     <div class="sloupec">
 
-        <input type="button" value="+" onclick="Plus()">
+        <input type="button" value="updateOperation('+'); Plus()">
 
-        <input type="button" value="-" onclick="Minus()">
+        <input type="button" value="updateOperation('-'); Minus()">
 
-        <input type="button" value="×" onclick="Krat()">
+        <input type="button" value="updateOperation('*'); Krat()">
 
-        <input type="button" value="÷" onclick="Deleno()">
+        <input type="button" value="updateOperation('÷'); Deleno()">
                <div style="margin-top:20px"></div>
-        <input type="button" value="%" onclick="Procenta()">
+        <input type="button" value="updateOperation('%'); Procenta()">
 
         <input type="button" value="AVG" onclick="Prumer()">
 
