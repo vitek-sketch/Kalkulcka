@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="cs">
 <head>
 <meta charset="UTF-8">
@@ -38,251 +38,147 @@ body {
 }
 
 form {
-
     background: rgba(255,255,255,0.08);
-
     backdrop-filter: blur(12px);
-
     padding: 35px;
-
     border-radius: 25px;
-
-    box-shadow:
-        0 0 25px rgba(0,0,0,0.4),
-        0 0 60px rgba(107,76,165,0.3);
-
     width: 340px;
-
     text-align: center;
-}
-
-h1 {
-
-    margin-bottom: 25px;
-
-    font-size: 32px;
-
-    text-shadow: 0 0 10px #b388ff;
-}
-
-label {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 5px;
 }
 
 input[type="number"],
 input[type="text"] {
-
     width: 90%;
-
     padding: 12px;
-
     margin-bottom: 10px;
-
     border: none;
     border-radius: 12px;
-
     background: rgba(255,255,255,0.12);
-
     color: white;
-
-    font-size: 16px;
-
-    outline: none;
-
-    transition: 0.2s;
-}
-
-input[type="number"]:focus,
-input[type="text"]:focus {
-
-    background: rgba(255,255,255,0.18);
-
-    transform: scale(1.02);
 }
 
 input[type="button"] {
-
-    padding: 12px 15px;
-
-    margin: 5px;
-
+    padding: 10px;
+    margin: 4px;
+    border-radius: 10px;
     border: none;
-    border-radius: 12px;
-
-    background: linear-gradient(
-        135deg,
-        #7b5cff,
-        #5b3fa3
-    );
-
+    background: #7b5cff;
     color: white;
-
-    font-weight: bold;
-
     cursor: pointer;
-
     transition: 0.2s;
-
-    box-shadow: 0 0 10px rgba(123,92,255,0.4);
 }
 
 input[type="button"]:hover {
-
-    transform: translateY(-3px) scale(1.05);
-
-    box-shadow:
-        0 0 20px rgba(123,92,255,0.7);
+    transform: scale(1.05);
 }
 
 #vysledek {
-
     margin-top: 20px;
-
-    font-size: 24px;
-
+    font-size: 26px;
     font-weight: bold;
-
-    color: #cdb7ff;
-
-    text-shadow: 0 0 10px #b388ff;
 }
 
-h3 {
-    margin-top: 40px;
-}
-#vysledek {
-    margin-top: 20px;
-    font-size: 28px;
-    font-weight: bold;
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-}
 #historie {
-    margin-top: 15px;
-    font-size: 14px;
+    margin-top: 10px;
+    font-size: 13px;
     opacity: 0.9;
 }
 
 #historie div {
-    padding: 3px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 3px;
 }
+
 </style>
 
 <script>
+
 function pridejDoHistorie(text) {
     var div = document.getElementById("historie");
     div.innerHTML = "<div>" + text + "</div>" + div.innerHTML;
 }
-function Mocnina() {
 
+function Plus() {
     var x = Number(document.F1.X.value);
     var y = Number(document.F1.Y.value);
     var z = document.F1.Z.value;
 
-    if (z == "") {
-
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x ** y);
-
-    } else {
-
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + ((x ** y) ** Number(z));
-    }
-}
-
-function Krat() {
-
-    var x = Number(document.F1.X.value);
-    var y = Number(document.F1.Y.value);
-    var z = document.F1.Z.value;
+    var vysledek;
 
     if (z == "") {
-
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x * y);
-
+        vysledek = x + y;
+        pridejDoHistorie(x + " + " + y + " = " + vysledek);
     } else {
-
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x * y * Number(z));
+        vysledek = x + y + Number(z);
+        pridejDoHistorie(x + " + " + y + " + " + z + " = " + vysledek);
     }
-}
 
-function Deleno() {
-
-    var x = Number(document.F1.X.value);
-    var y = Number(document.F1.Y.value);
-    var z = document.F1.Z.value;
-
-    if (z == "") {
-
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x / y);
-
-    } else {
-
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x / y / Number(z));
-    }
+    document.getElementById("vysledek").innerHTML = "Výsledek: " + vysledek;
 }
 
 function Minus() {
-
     var x = Number(document.F1.X.value);
     var y = Number(document.F1.Y.value);
     var z = document.F1.Z.value;
 
+    var vysledek;
+
     if (z == "") {
-
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x - y);
-
+        vysledek = x - y;
+        pridejDoHistorie(x + " - " + y + " = " + vysledek);
     } else {
-
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x - y - Number(z));
+        vysledek = x - y - Number(z);
+        pridejDoHistorie(x + " - " + y + " - " + z + " = " + vysledek);
     }
+
+    document.getElementById("vysledek").innerHTML = "Výsledek: " + vysledek;
 }
 
-function Plus() {
-
+function Krat() {
     var x = Number(document.F1.X.value);
     var y = Number(document.F1.Y.value);
     var z = document.F1.Z.value;
 
+    var vysledek;
+
     if (z == "") {
-
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x + y);
-
+        vysledek = x * y;
+        pridejDoHistorie(x + " × " + y + " = " + vysledek);
     } else {
-
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x + y + Number(z));
+        vysledek = x * y * Number(z);
+        pridejDoHistorie(x + " × " + y + " × " + z + " = " + vysledek);
     }
+
+    document.getElementById("vysledek").innerHTML = "Výsledek: " + vysledek;
 }
 
-function Procenta() {
+function Deleno() {
+    var x = Number(document.F1.X.value);
+    var y = Number(document.F1.Y.value);
+    var z = document.F1.Z.value;
 
+    var vysledek;
+
+    if (z == "") {
+        vysledek = x / y;
+        pridejDoHistorie(x + " ÷ " + y + " = " + vysledek);
+    } else {
+        vysledek = x / y / Number(z);
+        pridejDoHistorie(x + " ÷ " + y + " ÷ " + z + " = " + vysledek);
+    }
+
+    document.getElementById("vysledek").innerHTML = "Výsledek: " + vysledek;
+}
+
+function Mocnina() {
     var x = Number(document.F1.X.value);
     var y = Number(document.F1.Y.value);
 
-    var vysledek = x * (y / 100);
+    var vysledek = x ** y;
 
-    document.getElementById("vysledek").innerHTML =
-        "Výsledek: " + vysledek;
-}
+    pridejDoHistorie(x + " ^ " + y + " = " + vysledek);
 
-function Odmocnina(promenna) {
-
-    var cislo = Number(document.F1[promenna].value);
-
-    document.getElementById("vysledek").innerHTML =
-        "Výsledek: " + Math.sqrt(cislo);
+    document.getElementById("vysledek").innerHTML = "Výsledek: " + vysledek;
 }
 
 </script>
@@ -295,107 +191,53 @@ function Odmocnina(promenna) {
 
 <h1>Vítkova kalkulačka 🐶</h1>
 
-<label>X:</label>
-<input type="number" name="X">
-
-<label>Y:</label>
-<input type="number" name="Y">
-
-<label>Z:</label>
-<input type="number" name="Z">
+<input type="number" name="X" placeholder="X">
+<input type="number" name="Y" placeholder="Y">
+<input type="number" name="Z" placeholder="Z">
 
 <br>
 
-<input type="button" value="Krát" onclick="Krat()">
-<input type="button" value="Děleno" onclick="Deleno()">
-<input type="button" value="Mínus" onclick="Minus()">
 <input type="button" value="Plus" onclick="Plus()">
-
-<br>
-
+<input type="button" value="Minus" onclick="Minus()">
+<input type="button" value="Krat" onclick="Krat()">
+<input type="button" value="Deleno" onclick="Deleno()">
 <input type="button" value="Mocnina" onclick="Mocnina()">
-<input type="button" value="Procenta" onclick="Procenta()">
 
-<br>
-
-<input type="button" value="√x" onclick="Odmocnina('X')">
-<input type="button" value="√y" onclick="Odmocnina('Y')">
-<input type="button" value="√z" onclick="Odmocnina('Z')">
-
-<p id="vysledek">
-Výsledek:
-</p>
 <p id="vysledek">Výsledek:</p>
 
 <h3>Historie</h3>
 <div id="historie"></div>
+
 <h3>Feedback</h3>
 
-<input
-    type="text"
-    name="hodnoceni"
-    placeholder="1–10"
->
-
-<br>
-
-<input
-    type="button"
-    value="Odeslat feedback"
-    onclick="Feedback()"
->
+<input type="text" name="hodnoceni" placeholder="1–10">
+<input type="button" value="Odeslat feedback" onclick="Feedback()">
 
 </form>
 
 <script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-
-import {
-    getFirestore,
-    collection,
-    addDoc
-}
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
-
     apiKey: "AIzaSyB51hDWgvnrsPhFGfK8S8f6uJ4iLyFJDC0",
-
-    authDomain:
-    "kalkulacka-github.firebaseapp.com",
-
-    projectId:
-    "kalkulacka-github"
+    authDomain: "kalkulacka-github.firebaseapp.com",
+    projectId: "kalkulacka-github"
 };
 
 const app = initializeApp(firebaseConfig);
-
 const db = getFirestore(app);
 
 window.Feedback = async function () {
+    let hodnoceni = document.F1.hodnoceni.value;
 
-    let hodnoceni =
-        document.F1.hodnoceni.value;
+    await addDoc(collection(db, "feedbacks"), {
+        text: hodnoceni,
+        time: new Date()
+    });
 
-    if (!hodnoceni) {
-
-        alert("Zadej hodnocení!");
-        return;
-    }
-
-    await addDoc(
-        collection(db, "feedbacks"),
-        {
-            text: hodnoceni,
-            time: new Date()
-        }
-    );
-
-    alert("Děkuji za feedback!");
+    alert("Díky za feedback!");
 };
-
 </script>
 
 </body>
