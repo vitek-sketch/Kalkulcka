@@ -159,11 +159,23 @@ h3 {
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
+#historie {
+    margin-top: 15px;
+    font-size: 14px;
+    opacity: 0.9;
+}
 
+#historie div {
+    padding: 3px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
 </style>
 
 <script>
-
+function pridejDoHistorie(text) {
+    var div = document.getElementById("historie");
+    div.innerHTML = "<div>" + text + "</div>" + div.innerHTML;
+}
 function Mocnina() {
 
     var x = Number(document.F1.X.value);
@@ -313,7 +325,10 @@ function Odmocnina(promenna) {
 <p id="vysledek">
 Výsledek:
 </p>
+<p id="vysledek">Výsledek:</p>
 
+<h3>Historie</h3>
+<div id="historie"></div>
 <h3>Feedback</h3>
 
 <input
