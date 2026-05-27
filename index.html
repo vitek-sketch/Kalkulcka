@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -7,30 +8,28 @@
 
     <style>
         input[type="button"] {
-    cursor: pointer;
-    transition: 0.2s;
-            input[type="button"]:hover {
-    transform: scale(1.08);
-    background-color: rgba(255, 255, 255, 0.2);
-}
-}
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        input[type="button"]:hover {
+            transform: scale(1.08);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
         body {
-    margin: 0;
-    font-family: Arial;
-
-    background: linear-gradient(
-        135deg,
-        #0b0b10,
-        #2b2b3a,
-        #6b4ca5
-    );
-
-    background-size: cover;
-    background-attachment: fixed;
-
-    color: white;
-    text-align: center;
-}
+            margin: 0;
+            font-family: Arial;
+            background: linear-gradient(
+                135deg,
+                #0b0b10,
+                #2b2b3a,
+                #6b4ca5
+            );
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
         }
 
         form {
@@ -48,77 +47,78 @@
     </style>
 
     <script>
+        function Mocnina() {
+            var x = Number(document.F1.X.value);
+            var y = Number(document.F1.Y.value);
+            var z = document.F1.Z.value;
 
-</head>function Mocnina() {
-    var x = Number(document.F1.X.value);
-    var y = Number(document.F1.Y.value);
-    var z = document.F1.Z.value;
+            if (z == "") {
+                document.getElementById("vysledek").innerHTML =
+                    "Výsledek: " + (x ** y);
+            } else {
+                document.getElementById("vysledek").innerHTML =
+                    "Výsledek: " + ((x ** y) ** Number(z));
+            }
+        }
 
-    if (z == "") {
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x ** y);
-    } else {
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + ((x ** y) ** Number(z));
-    }
-}
+        function Krat() {
+            var x = Number(document.F1.X.value);
+            var y = Number(document.F1.Y.value);
+            var z = document.F1.Z.value;
 
-function Krat() {
-    var x = Number(document.F1.X.value);
-    var y = Number(document.F1.Y.value);
-    var z = document.F1.Z.value;
+            if (z == "") {
+                document.getElementById("vysledek").innerHTML =
+                    "Výsledek: " + (x * y);
+            } else {
+                document.getElementById("vysledek").innerHTML =
+                    "Výsledek: " + (x * y * Number(z));
+            }
+        }
 
-    if (z == "") {
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x * y);
-    } else {
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x * y * Number(z));
-    }
-}
+        function Deleno() {
+            var x = Number(document.F1.X.value);
+            var y = Number(document.F1.Y.value);
+            var z = document.F1.Z.value;
 
-function Deleno() {
-    var x = Number(document.F1.X.value);
-    var y = Number(document.F1.Y.value);
-    var z = document.F1.Z.value;
+            if (z == "") {
+                document.getElementById("vysledek").innerHTML =
+                    "Výsledek: " + (x / y);
+            } else {
+                document.getElementById("vysledek").innerHTML =
+                    "Výsledek: " + (x / y / Number(z));
+            }
+        }
 
-    if (z == "") {
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x / y);
-    } else {
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x / y / Number(z));
-    }
-}
+        function Minus() {
+            var x = Number(document.F1.X.value);
+            var y = Number(document.F1.Y.value);
+            var z = document.F1.Z.value;
 
-function Minus() {
-    var x = Number(document.F1.X.value);
-    var y = Number(document.F1.Y.value);
-    var z = document.F1.Z.value;
+            if (z == "") {
+                document.getElementById("vysledek").innerHTML =
+                    "Výsledek: " + (x - y);
+            } else {
+                document.getElementById("vysledek").innerHTML =
+                    "Výsledek: " + (x - y - Number(z));
+            }
+        }
 
-    if (z == "") {
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x - y);
-    } else {
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x - y - Number(z));
-    }
-}
+        function Plus() {
+            var x = Number(document.F1.X.value);
+            var y = Number(document.F1.Y.value);
+            var z = document.F1.Z.value;
 
-function Plus() {
-    var x = Number(document.F1.X.value);
-    var y = Number(document.F1.Y.value);
-    var z = document.F1.Z.value;
-
-    if (z == "") {
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x + y);
-    } else {
-        document.getElementById("vysledek").innerHTML =
-            "Výsledek: " + (x + y + Number(z));
-    }
-}
+            if (z == "") {
+                document.getElementById("vysledek").innerHTML =
+                    "Výsledek: " + (x + y);
+            } else {
+                document.getElementById("vysledek").innerHTML =
+                    "Výsledek: " + (x + y + Number(z));
+            }
+        }
     </script>
+</head>
+
 <body>
 
 <h1>Vítkova kalkulačka 🐶</h1>
@@ -126,12 +126,14 @@ function Plus() {
 <form name="F1">
     x:
     <input type="text" name="X">
+
     y:
     <input type="text" name="Y">
+
     z:
     <input type="text" name="Z">
 
-    <br>
+    <br><br>
 
     <input type="button" value="Krát" onclick="Krat()">
     <input type="button" value="Děleno" onclick="Deleno()">
@@ -148,7 +150,6 @@ function Plus() {
     <input type="button" value="Odeslat feedback" onclick="Feedback()">
 </form>
 
-<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -165,6 +166,11 @@ const db = getFirestore(app);
 window.Feedback = async function () {
     let hodnoceni = document.F1.hodnoceni.value;
 
+    if (!hodnoceni) {
+        alert("Zadej hodnocení!");
+        return;
+    }
+
     await addDoc(collection(db, "feedbacks"), {
         text: hodnoceni,
         time: new Date()
@@ -176,3 +182,4 @@ window.Feedback = async function () {
 
 </body>
 </html>
+```
