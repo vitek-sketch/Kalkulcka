@@ -48,39 +48,77 @@
     </style>
 
     <script>
-        function Mocnina() {
-    var x = document.F1.X.value;
-    var y = document.F1.Y.value;
 
-    document.getElementById("vysledek").innerHTML =
-        "Výsledek: " + (x ** y);
+</head>function Mocnina() {
+    var x = Number(document.F1.X.value);
+    var y = Number(document.F1.Y.value);
+    var z = document.F1.Z.value;
+
+    if (z == "") {
+        document.getElementById("vysledek").innerHTML =
+            "Výsledek: " + (x ** y);
+    } else {
+        document.getElementById("vysledek").innerHTML =
+            "Výsledek: " + ((x ** y) ** Number(z));
+    }
 }
-        function Krat() {
-            var x = document.F1.X.value;
-            var y = document.F1.Y.value;
-            document.getElementById("vysledek").innerHTML = "Výsledek: " + (x * y);
-        }
 
-        function Deleno() {
-            var x = document.F1.X.value;
-            var y = document.F1.Y.value;
-            document.getElementById("vysledek").innerHTML = "Výsledek: " + (x / y);
-        }
+function Krat() {
+    var x = Number(document.F1.X.value);
+    var y = Number(document.F1.Y.value);
+    var z = document.F1.Z.value;
 
-        function Minus() {
-            var x = document.F1.X.value;
-            var y = document.F1.Y.value;
-            document.getElementById("vysledek").innerHTML = "Výsledek: " + (x - y);
-        }
+    if (z == "") {
+        document.getElementById("vysledek").innerHTML =
+            "Výsledek: " + (x * y);
+    } else {
+        document.getElementById("vysledek").innerHTML =
+            "Výsledek: " + (x * y * Number(z));
+    }
+}
 
-        function Plus() {
-            var x = document.F1.X.value * 1;
-            var y = document.F1.Y.value * 1;
-            document.getElementById("vysledek").innerHTML = "Výsledek: " + (x + y);
-        }
+function Deleno() {
+    var x = Number(document.F1.X.value);
+    var y = Number(document.F1.Y.value);
+    var z = document.F1.Z.value;
+
+    if (z == "") {
+        document.getElementById("vysledek").innerHTML =
+            "Výsledek: " + (x / y);
+    } else {
+        document.getElementById("vysledek").innerHTML =
+            "Výsledek: " + (x / y / Number(z));
+    }
+}
+
+function Minus() {
+    var x = Number(document.F1.X.value);
+    var y = Number(document.F1.Y.value);
+    var z = document.F1.Z.value;
+
+    if (z == "") {
+        document.getElementById("vysledek").innerHTML =
+            "Výsledek: " + (x - y);
+    } else {
+        document.getElementById("vysledek").innerHTML =
+            "Výsledek: " + (x - y - Number(z));
+    }
+}
+
+function Plus() {
+    var x = Number(document.F1.X.value);
+    var y = Number(document.F1.Y.value);
+    var z = document.F1.Z.value;
+
+    if (z == "") {
+        document.getElementById("vysledek").innerHTML =
+            "Výsledek: " + (x + y);
+    } else {
+        document.getElementById("vysledek").innerHTML =
+            "Výsledek: " + (x + y + Number(z));
+    }
+}
     </script>
-</head>
-
 <body>
 
 <h1>Vítkova kalkulačka 🐶</h1>
@@ -90,6 +128,8 @@
     <input type="text" name="X">
     y:
     <input type="text" name="Y">
+    z:
+    <input type="text" name="Z">
 
     <br>
 
