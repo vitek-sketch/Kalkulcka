@@ -118,6 +118,18 @@
                     "Výsledek: " + (x + y + Number(z));
             }
         }
+        function calculate() {
+    let expression = display.value;
+
+    // Převod procent
+    expression = expression.replace(/(\d+)%/g, '($1/100)');
+
+    try {
+        display.value = eval(expression);
+    } catch {
+        display.value = "Chyba";
+    }
+}
     </script>
 </head>
 
@@ -143,6 +155,7 @@
     <input type="button" value="Plus" onclick="Plus()">
     <input type="button" value="Mocnina" onclick="Mocnina()">
     <br>
+    <button onclick="appendValue('%')">%</button>
   
 
     <p id="vysledek">Výsledek:</p>
