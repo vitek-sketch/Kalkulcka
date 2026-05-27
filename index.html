@@ -118,6 +118,15 @@
                     "Výsledek: " + (x + y + Number(z));
             }
         }
+        function Procenta() {
+    var x = Number(document.F1.X.value);
+    var y = Number(document.F1.Y.value);
+
+    var vysledek = x * (y / 100);
+
+    document.getElementById("vysledek").innerHTML =
+        "Výsledek: " + vysledek;
+}
 
     </script>
 </head>
@@ -144,6 +153,7 @@
     <input type="button" value="Plus" onclick="Plus()">
     <input type="button" value="Mocnina" onclick="Mocnina()">
     <br>
+    <input type="button" value="%" onclick="Procenta()">
   
     <p id="vysledek">Výsledek:</p>
 
