@@ -98,9 +98,19 @@ function setResult(v){
 }
 
 function updateOperation(op){
+
     let x = document.F1.X.value;
     let y = document.F1.Y.value;
-    document.getElementById("operace").innerHTML = `Operace: ${x} ${op} ${y}`;
+    let z = document.F1.Z.value;
+
+    let text = x + " " + op + " " + y;
+
+    if(z !== ""){
+        text += " " + op + " " + z;
+    }
+
+    document.getElementById("operace").innerHTML =
+        "Operace: " + text;
 }
 
 /* OPERACE */
