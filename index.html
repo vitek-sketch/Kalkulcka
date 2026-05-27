@@ -169,6 +169,24 @@ h3 {
 .feedback-box input[type="text"] {
     width: 90%;
 }
+    .kalk-grid {
+    display: grid;
+    grid-template-columns: 70px 1fr 70px;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sloupec {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stred input {
+    width: 100%;
+    box-sizing: border-box;
+}
 </style>
 
 <script>
@@ -295,33 +313,38 @@ function Odmocnina(promenna) {
 
 <h1> Vítkova Kalkulačka 🧮</h1>
 
-<label>X:</label>
-<input type="number" name="X">
+<div class="kalk-grid">
 
-<label>Y:</label>
-<input type="number" name="Y">
+    <div class="sloupec">
+        <input type="button" value="+" onclick="Plus()">
+        <input type="button" value="-" onclick="Minus()">
+        <input type="button" value="×" onclick="Krat()">
+        <input type="button" value="÷" onclick="Deleno()">
+    </div>
 
-<label>Z:</label>
-<input type="number" name="Z">
+    <div class="sloupec stred">
 
-<br>
+        <input type="number" name="X" placeholder="X =">
 
-<input type="button" value="Krát" onclick="Krat()">
-<input type="button" value="Děleno" onclick="Deleno()">
-<input type="button" value="Mínus" onclick="Minus()">
-<input type="button" value="Plus" onclick="Plus()">
+        <input type="number" name="Y" placeholder="Y =">
 
-<br>
+        <input type="number" name="Z" placeholder="Z =">
 
-<input type="button" value="Mocnina" onclick="Mocnina()">
-<input type="button" value="Procenta" onclick="Procenta()">
+    </div>
 
-<br>
+    <div class="sloupec">
 
-<input type="button" value="√x" onclick="Odmocnina('X')">
-<input type="button" value="√y" onclick="Odmocnina('Y')">
-<input type="button" value="√z" onclick="Odmocnina('Z')">
+        <input type="button" value="xʸ" onclick="Mocnina()">
 
+        <input type="button" value="√x" onclick="Odmocnina('X')">
+
+        <input type="button" value="√y" onclick="Odmocnina('Y')">
+
+        <input type="button" value="√z" onclick="Odmocnina('Z')">
+
+    </div>
+
+</div>
 <p id="vysledek">Výsledek:</p>
 
 <h3>Feedback</h3>
