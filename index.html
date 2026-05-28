@@ -2,19 +2,32 @@
 <html lang="cs">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Vítkova Kalkulačka</title>
 
 <style>
+
 body {
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg,#0f0f1a,#1e1e2f,#5b3fa3);
+
+    background: linear-gradient(
+        135deg,
+        #0f0f1a,
+        #1e1e2f,
+        #5b3fa3
+    );
+
     background-size: 400% 400%;
     animation: gradient 10s ease infinite;
+
     min-height: 100vh;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     color: white;
 }
 
@@ -25,154 +38,209 @@ body {
 }
 
 form {
+
     background: rgba(255,255,255,0.08);
+
     backdrop-filter: blur(12px);
+
     width: 520px;
     max-width: 92vw;
+
     padding: 30px;
+
     border-radius: 25px;
+
+    box-shadow:
+        0 0 25px rgba(0,0,0,0.4),
+        0 0 60px rgba(107,76,165,0.3);
+
     text-align: center;
 }
 
 h1 {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #b388ff;
+}
+
+/* DISPLAY */
+
+#display {
+
+    width: 90%;
+
+    padding: 18px;
+
+    margin-bottom: 20px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: rgba(255,255,255,0.12);
+
+    color: white;
+
+    font-size: 28px;
+
+    text-align: right;
+
+    outline: none;
 }
 
 /* GRID */
+
 .kalk-grid {
+
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 15px;
-    margin-top: 10px;
-}
 
-.sloupec {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+    grid-template-columns: repeat(4, 1fr);
 
-/* INPUT */
-input[type="number"] {
-    padding: 12px;
-    border-radius: 12px;
-    border: none;
-    background: rgba(255,255,255,0.12);
-    color: white;
-    font-size: 22px;
-    text-align: center;
+    gap: 12px;
 }
 
 /* BUTTONS */
+
 input[type="button"] {
-    padding: 12px;
+
+    padding: 18px;
+
     border: none;
-    border-radius: 12px;
-    background: linear-gradient(135deg,#7b5cff,#5b3fa3);
+
+    border-radius: 15px;
+
+    background: linear-gradient(
+        135deg,
+        #7b5cff,
+        #5b3fa3
+    );
+
     color: white;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
     cursor: pointer;
+
+    transition: 0.2s;
+}
+
+input[type="button"]:hover {
+
+    transform: translateY(-3px) scale(1.05);
+
+    box-shadow:
+        0 0 20px rgba(123,92,255,0.7);
 }
 
 /* RESULT */
+
 #vysledek {
+
     margin-top: 20px;
+
     padding: 15px;
-    background: rgba(255,255,255,0.1);
+
     border-radius: 15px;
+
+    background: rgba(255,255,255,0.1);
+
     font-size: 28px;
+
+    font-weight: bold;
+
+    text-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
 
-#operace {
-    margin-bottom: 10px;
-    opacity: 0.8;
+/* FEEDBACK */
+
+.feedback {
+
+    margin-top: 30px;
 }
+
+.feedback input[type="text"] {
+
+    width: 90%;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    background: rgba(255,255,255,0.12);
+
+    color: white;
+}
+
 </style>
 
 <script>
-function getX(){ return Number(document.F1.X.value); }
-function getY(){ return Number(document.F1.Y.value); }
-function getZ(){ return document.F1.Z.value === "" ? null : Number(document.F1.Z.value); }
+
+function pridej(hodnota){
+
+    document.getElementById("display").value += hodnota;
+}
+
+function Vypocet(){
+
+    try {
+
+        let priklad =
+            document.getElementById("display").value;
+
+        let vysledek = eval(priklad);
+
+        setResult(vysledek);
+
+    } catch {
+
+        setResult("Chyba");
+    }
+}
 
 function setResult(v){
-    document.getElementById("vysledek").innerHTML = "Výsledek: " + v;
-}
 
-function updateOperation(op){
-
-    let x = document.F1.X.value;
-    let y = document.F1.Y.value;
-    let z = document.F1.Z.value;
-
-    let text = x + " " + op + " " + y;
-
-    if(z !== ""){
-        text += " " + op + " " + z;
-    }
-
-    document.getElementById("operace").innerHTML =
-        "Operace: " + text;
-}
-
-/* OPERACE */
-function Plus(){
-    let z = getZ();
-    setResult(z===null ? getX()+getY() : getX()+getY()+z);
-}
-
-function Minus(){
-    let z = getZ();
-    setResult(z===null ? getX()-getY() : getX()-getY()-z);
-}
-
-function Krat(){
-    let z = getZ();
-    setResult(z===null ? getX()*getY() : getX()*getY()*z);
-}
-
-function Deleno(){
-    let z = getZ();
-    setResult(z===null ? getX()/getY() : getX()/getY()/z);
-}
-
-function Mocnina(){
-    let z = getZ();
-    setResult(z===null ? Math.pow(getX(),getY()) : Math.pow(Math.pow(getX(),getY()),z));
-}
-
-function Odmocnina(p){
-    setResult(Math.sqrt(Number(document.F1[p].value)));
-}
-
-function Procenta(){
-    setResult(getX() * (getY()/100));
-}
-
-/* BONUS */
-function Pi(){
-    document.F1.X.value = Math.PI.toFixed(5);
+    document.getElementById("vysledek").innerHTML =
+        "Výsledek: " + v;
 }
 
 function ClearPole(){
-    document.F1.X.value="";
-    document.F1.Y.value="";
-    document.F1.Z.value="";
-    setResult("Výsledek:");
-    document.getElementById("operace").innerHTML="Operace:";
+
+    document.getElementById("display").value = "";
+
+    setResult("");
+}
+
+function Pi(){
+
+    pridej("3.14159");
+}
+
+function Odmocnina(){
+
+    pridej("Math.sqrt(");
+}
+
+function Mocnina(){
+
+    pridej("**");
 }
 
 function Prumer(){
-    let nums=[];
-    if(document.F1.X.value!=="") nums.push(getX());
-    if(document.F1.Y.value!=="") nums.push(getY());
-    if(document.F1.Z.value!=="") nums.push(getZ());
 
-    if(nums.length===0){
-        setResult("Zadej čísla");
-        return;
-    }
+    let text =
+        document.getElementById("display").value;
 
-    setResult(nums.reduce((a,b)=>a+b,0)/nums.length);
+    let nums =
+        text.split("+").map(Number);
+
+    let sum =
+        nums.reduce((a,b)=>a+b,0);
+
+    setResult(sum / nums.length);
 }
+
 </script>
 
 </head>
@@ -183,80 +251,121 @@ function Prumer(){
 
 <h1>🐶 Vítkova Kalkulačka 🧮</h1>
 
-<div id="operace">Operace:</div>
+<input
+    type="text"
+    id="display"
+    placeholder="0"
+>
 
 <div class="kalk-grid">
 
-    <!-- LEVÁ -->
-    <div class="sloupec">
-        <input type="button" value="+" onclick="updateOperation('+'); Plus()">
-        <input type="button" value="-" onclick="updateOperation('-'); Minus()">
-        <input type="button" value="×" onclick="updateOperation('×'); Krat()">
-        <input type="button" value="÷" onclick="updateOperation('÷'); Deleno()">
-                       <div style="margin-top:20px"></div>
-        <input type="button" value="%" onclick="updateOperation('%'); Procenta()">
-        <input type="button" value="AVG" onclick="Prumer()">
-    </div>
+    <input type="button" value="7" onclick="pridej('7')">
+    <input type="button" value="8" onclick="pridej('8')">
+    <input type="button" value="9" onclick="pridej('9')">
+    <input type="button" value="÷" onclick="pridej('/')">
 
-    <!-- STŘED -->
-    <div class="sloupec">
-        <input type="number" name="X" placeholder="X">
-        <input type="number" name="Y" placeholder="Y">
-        <input type="number" name="Z" placeholder="Z">
-    </div>
+    <input type="button" value="4" onclick="pridej('4')">
+    <input type="button" value="5" onclick="pridej('5')">
+    <input type="button" value="6" onclick="pridej('6')">
+    <input type="button" value="×" onclick="pridej('*')">
 
-    <!-- PRAVÁ -->
-    <div class="sloupec">
-        <input type="button" value="xʸ" onclick="Mocnina()">
-        <input type="button" value="√x" onclick="updateOperation('√x'); Odmocnina('X')">
-        <input type="button" value="√y" onclick="updateOperation('√y'); Odmocnina('Y')">
-        <input type="button" value="√z" onclick="updateOperation('√z'); Odmocnina('Z')">
-                       <div style="margin-top:20px"></div>
-        <input type="button" value="π" onclick="Pi()">
-        <input type="button" value="C" onclick="ClearPole()">
-    </div>
+    <input type="button" value="1" onclick="pridej('1')">
+    <input type="button" value="2" onclick="pridej('2')">
+    <input type="button" value="3" onclick="pridej('3')">
+    <input type="button" value="-" onclick="pridej('-')">
+
+    <input type="button" value="0" onclick="pridej('0')">
+    <input type="button" value="." onclick="pridej('.')">
+    <input type="button" value="=" onclick="Vypocet()">
+    <input type="button" value="+" onclick="pridej('+')">
+
+    <input type="button" value="π" onclick="Pi()">
+    <input type="button" value="√" onclick="Odmocnina()">
+    <input type="button" value="xʸ" onclick="Mocnina()">
+    <input type="button" value="%" onclick="pridej('/100')">
+
+    <input type="button" value="AVG" onclick="Prumer()">
+    <input type="button" value="C" onclick="ClearPole()">
 
 </div>
 
-<div id="vysledek">Výsledek:</div>
+<div id="vysledek">
+Výsledek:
+</div>
+
+<div class="feedback">
 
 <h3>Feedback</h3>
 
-<input type="text" name="hodnoceni" placeholder="1–10">
+<input
+    type="text"
+    name="hodnoceni"
+    placeholder="1–10"
+>
+
 <br><br>
-<input type="button" value="Odeslat feedback" onclick="Feedback()">
+
+<input
+    type="button"
+    value="Odeslat feedback"
+    onclick="Feedback()"
+>
+
+</div>
 
 </form>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc
+}
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB51hDWgvnrsPhFGfK8S8f6uJ4iLyFJDC0",
-    authDomain: "kalkulacka-github.firebaseapp.com",
-    projectId: "kalkulacka-github"
+
+    apiKey: "TVŮJ_API_KEY",
+
+    authDomain:
+    "kalkulacka-github.firebaseapp.com",
+
+    projectId:
+    "kalkulacka-github"
 };
 
 const app = initializeApp(firebaseConfig);
+
 const db = getFirestore(app);
 
-window.Feedback = async function(){
-    let h=document.F1.hodnoceni.value;
+window.Feedback = async function () {
 
-    if(!h){
+    let hodnoceni =
+        document.F1.hodnoceni.value;
+
+    if (!hodnoceni) {
+
         alert("Zadej hodnocení!");
         return;
     }
 
-    await addDoc(collection(db,"feedbacks"),{
-        text:h,
-        time:new Date()
-    });
+    await addDoc(
+        collection(db, "feedbacks"),
+        {
+            text: hodnoceni,
+            time: new Date()
+        }
+    );
 
-    alert("Děkuji!");
+    alert("Děkuji za feedback!");
 };
+
 </script>
 
 </body>
 </html>
+
