@@ -214,9 +214,9 @@ input[type="button"]:hover {
 }
 
 </style>
-let scienceMode = false;
-<script>
 
+<script>
+let scienceMode = false;
 function pridej(hodnota){
 
     document.getElementById("display").value += hodnota;
@@ -372,11 +372,15 @@ function Pythagor(){
     <input type="button" value="=" onclick="Vypocet()">
     <input type="button" value="+" onclick="pridej('+')">
 
-type="button" id="tl1" value="π" onclick="Pi()"> <input type="button" id="tl2" value="√" onclick="Odmocnina()"> <input type="button" id="tl3" value="xʸ" onclick="Mocnina()"> <input type="button" id="tl4" value="%" onclick="pridej('/100')"> <input type="button" id="tl5" value="AVG" onclick="Prumer()"> <input type="button" id="tl6" value="C" onclick="ClearPole()"> <input type="button" id="tl7" value="SCI" onclick="PrepniScience()">
-    <input type="button" value="(" onclick="pridej('(')">
-
+<input type="button" id="tl1" value="π" onclick="Pi()"> 
+    <input type="button" id="tl2" value="√" onclick="Odmocnina()"> 
+    <input type="button" id="tl3" value="xʸ" onclick="Mocnina()"> 
+    <input type="button" id="tl4" value="%" onclick="pridej('/100')"> 
+    <input type="button" id="tl5" value="AVG" onclick="Prumer()"> 
+    <input type="button" id="tl6" value="C" onclick="ClearPole()"> 
+    <input type="button" id="tl7" value="SCI" onclick="PrepniScience()"> 
+    <input type="button" value="(" onclick="pridej('(')"> 
     <input type="button" value=")" onclick="pridej(')')">
-
 </div>
 
 <div id="vysledek">
