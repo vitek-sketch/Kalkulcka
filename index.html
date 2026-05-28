@@ -214,7 +214,7 @@ input[type="button"]:hover {
 }
 
 </style>
-
+let scienceMode = false;
 <script>
 
 function pridej(hodnota){
@@ -266,7 +266,7 @@ function Mocnina(){
 
     pridej("**");
 }
-
+function PrepniScience(){ scienceMode = !scienceMode; let tl1 = document.getElementById("tl1"); let tl2 = document.getElementById("tl2"); let tl3 = document.getElementById("tl3"); let tl4 = document.getElementById("tl4"); let tl5 = document.getElementById("tl5"); let tl6 = document.getElementById("tl6"); let tl7 = document.getElementById("tl7"); if(scienceMode){ tl1.value = "sin"; tl1.onclick = Sinus; tl2.value = "cos"; tl2.onclick = Cosinus; tl3.value = "tan"; tl3.onclick = Tangens; tl4.value = "log"; tl4.onclick = Logaritmus; tl5.value = "ln"; tl5.onclick = Ln; tl6.value = "!"; tl6.onclick = Faktorial; tl7.value = "BASIC"; tl7.onclick = PrepniScience; } else { tl1.value = "π"; tl1.onclick = Pi; tl2.value = "√"; tl2.onclick = Odmocnina; tl3.value = "xʸ"; tl3.onclick = Mocnina; tl4.value = "%"; tl4.onclick = function(){ pridej('/100'); }; tl5.value = "AVG"; tl5.onclick = Prumer; tl6.value = "C"; tl6.onclick = ClearPole; tl7.value = "SCI"; tl7.onclick = PrepniScience; } }
 function Prumer(){
 
     let text =
@@ -372,14 +372,7 @@ function Pythagor(){
     <input type="button" value="=" onclick="Vypocet()">
     <input type="button" value="+" onclick="pridej('+')">
 
-    <input type="button" value="π" onclick="Pi()">
-    <input type="button" value="√" onclick="Odmocnina()">
-    <input type="button" value="xʸ" onclick="Mocnina()">
-    <input type="button" value="%" onclick="pridej('/100')">
-
-    <input type="button" value="AVG" onclick="Prumer()">
-    <input type="button" value="C" onclick="ClearPole()">
-    <input type="button" value="P" onclick="OtevriPythagora()">
+type="button" id="tl1" value="π" onclick="Pi()"> <input type="button" id="tl2" value="√" onclick="Odmocnina()"> <input type="button" id="tl3" value="xʸ" onclick="Mocnina()"> <input type="button" id="tl4" value="%" onclick="pridej('/100')"> <input type="button" id="tl5" value="AVG" onclick="Prumer()"> <input type="button" id="tl6" value="C" onclick="ClearPole()"> <input type="button" id="tl7" value="SCI" onclick="PrepniScience()">
     <input type="button" value="(" onclick="pridej('(')">
 
     <input type="button" value=")" onclick="pridej(')')">
