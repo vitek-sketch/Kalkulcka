@@ -11,499 +11,214 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
-
-    background: linear-gradient(
-        135deg,
-        #0f0f1a,
-        #1e1e2f,
-        #5b3fa3
-    );
-
+    background: linear-gradient(135deg,#0f0f1a,#1e1e2f,#5b3fa3);
     background-size: 400% 400%;
     animation: gradient 10s ease infinite;
-
     min-height: 100vh;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     color: white;
 }
 
 @keyframes gradient {
-
     0% { background-position: 0% 50%; }
-
     50% { background-position: 100% 50%; }
-
     100% { background-position: 0% 50%; }
 }
 
 form {
-
     background: rgba(255,255,255,0.08);
-
     backdrop-filter: blur(12px);
-
     width: 520px;
-
     max-width: 92vw;
-
     padding: 30px;
-
     border-radius: 25px;
-
-    box-shadow:
-        0 0 25px rgba(0,0,0,0.4),
-        0 0 60px rgba(107,76,165,0.3);
-
     text-align: center;
 }
 
-h1 {
-
-    margin-bottom: 20px;
-
-    text-shadow: 0 0 10px #b388ff;
-}
-
 #display {
-
     width: 90%;
-
     padding: 18px;
-
     margin-bottom: 20px;
-
     border: none;
-
     border-radius: 15px;
-
     background: rgba(255,255,255,0.12);
-
     color: white;
-
     font-size: 28px;
-
     text-align: right;
-
-    outline: none;
 }
 
 .kalk-grid {
-
     display: grid;
-
     grid-template-columns: repeat(4, 1fr);
-
     gap: 12px;
 }
 
 input[type="button"] {
-
     padding: 18px;
-
     border: none;
-
     border-radius: 15px;
-
-    background: linear-gradient(
-        135deg,
-        #7b5cff,
-        #5b3fa3
-    );
-
+    background: linear-gradient(135deg,#7b5cff,#5b3fa3);
     color: white;
-
-    font-size: 20px;
-
+    font-size: 18px;
     font-weight: bold;
-
     cursor: pointer;
-
     transition: 0.2s;
 }
 
 input[type="button"]:hover {
-
-    transform: translateY(-3px) scale(1.05);
-
-    box-shadow:
-        0 0 20px rgba(123,92,255,0.7);
+    transform: scale(1.05);
 }
 
 #vysledek {
-
     margin-top: 20px;
-
     padding: 15px;
-
     border-radius: 15px;
-
     background: rgba(255,255,255,0.1);
-
     font-size: 28px;
-
-    font-weight: bold;
-
-    text-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
 
-#Pythagor {
-
-    margin-top: 25px;
-
-    padding: 20px;
-
-    border-radius: 20px;
-
-    background: rgba(255,255,255,0.08);
-}
-
-.py-grid {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 10px;
-
-    margin-top: 15px;
-}
-
-.py-grid input {
-
-    width: 90px;
-
-    padding: 12px;
-
-    border: none;
-
-    border-radius: 12px;
-
-    background: rgba(255,255,255,0.12);
-
-    color: white;
-
-    text-align: center;
-
-    font-size: 20px;
-
-    outline: none;
-}
-
-.feedback {
-
-    margin-top: 30px;
-}
-
-.feedback input[type="text"] {
-
-    width: 90%;
-
-    padding: 10px;
-
-    border-radius: 10px;
-
-    border: none;
-
-    background: rgba(255,255,255,0.12);
-
-    color: white;
+.basic, .science {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
 }
 
 </style>
-
-<script>
-let scienceMode = false;
-function pridej(hodnota){
-
-    document.getElementById("display").value += hodnota;
-}
-
-function Vypocet(){
-
-    try {
-
-        let priklad =
-            document.getElementById("display").value;
-
-        let vysledek = eval(priklad);
-
-        setResult(vysledek);
-
-    } catch {
-
-        setResult("Chyba");
-    }
-}
-
-function setResult(v){
-
-    document.getElementById("vysledek").innerHTML =
-        "Výsledek: " + v;
-}
-
-function ClearPole(){
-
-    document.getElementById("display").value = "";
-
-    setResult("");
-}
-
-function Pi(){
-
-    pridej("3.141592");
-}
-
-function Odmocnina(){
-
-    pridej("Math.sqrt(");
-}
-
-function Mocnina(){
-
-    pridej("**");
-}
-function PrepniScience(){ scienceMode = !scienceMode; let tl1 = document.getElementById("tl1"); let tl2 = document.getElementById("tl2"); let tl3 = document.getElementById("tl3"); let tl4 = document.getElementById("tl4"); let tl5 = document.getElementById("tl5"); let tl6 = document.getElementById("tl6"); let tl7 = document.getElementById("tl7"); if(scienceMode){ tl1.value = "sin"; tl1.onclick = Sinus; tl2.value = "cos"; tl2.onclick = Cosinus; tl3.value = "tan"; tl3.onclick = Tangens; tl4.value = "log"; tl4.onclick = Logaritmus; tl5.value = "ln"; tl5.onclick = Ln; tl6.value = "!"; tl6.onclick = Faktorial; tl7.value = "BASIC"; tl7.onclick = PrepniScience; } else { tl1.value = "π"; tl1.onclick = Pi; tl2.value = "√"; tl2.onclick = Odmocnina; tl3.value = "xʸ"; tl3.onclick = Mocnina; tl4.value = "%"; tl4.onclick = function(){ pridej('/100'); }; tl5.value = "AVG"; tl5.onclick = Prumer; tl6.value = "C"; tl6.onclick = ClearPole; tl7.value = "SCI"; tl7.onclick = PrepniScience; } }
-function Prumer(){
-
-    let text =
-        document.getElementById("display").value;
-
-    let nums =
-        text.split("+").map(Number);
-
-    let sum =
-        nums.reduce((a,b)=>a+b,0);
-
-    setResult((sum / nums.length).toFixed(3));
-}
-
-function OtevriPythagora(){
-
-    let div =
-        document.getElementById("Pythagor");
-
-    if(div.style.display == "none"){
-
-        div.style.display = "block";
-
-    } else {
-
-        div.style.display = "none";
-    }
-}
-
-function Pythagor(){
-
-    let a =
-        parseFloat(document.getElementById("A").value);
-
-    let b =
-        parseFloat(document.getElementById("B").value);
-
-    let c =
-        parseFloat(document.getElementById("C").value);
-
-    if(isNaN(c)){
-
-        c = Math.sqrt(a*a + b*b);
-
-        setResult("C = " + c.toFixed(3));
-    }
-
-    else if(isNaN(a)){
-
-        a = Math.sqrt(c*c - b*b);
-
-        setResult("A = " + a.toFixed(3));
-    }
-
-    else if(isNaN(b)){
-
-        b = Math.sqrt(c*c - a*a);
-
-        setResult("B = " + b.toFixed(3));
-    }
-
-    else {
-
-        setResult("Nech jedno pole prázdné");
-    }
-}
-
-</script>
-
 </head>
 
 <body>
 
-<form name="F1">
+<form>
 
 <h1>🐶 Vítkova Kalkulačka 🧮</h1>
 
-<input
-    type="text"
-    id="display"
-    placeholder="0"
->
+<input id="display" type="text">
 
 <div class="kalk-grid">
 
-    <input type="button" value="7" onclick="pridej('7')">
-    <input type="button" value="8" onclick="pridej('8')">
-    <input type="button" value="9" onclick="pridej('9')">
-    <input type="button" value="÷" onclick="pridej('/')">
+<!-- BASIC -->
+<div id="basic">
 
-    <input type="button" value="4" onclick="pridej('4')">
-    <input type="button" value="5" onclick="pridej('5')">
-    <input type="button" value="6" onclick="pridej('6')">
-    <input type="button" value="×" onclick="pridej('*')">
+<div class="basic">
 
-    <input type="button" value="1" onclick="pridej('1')">
-    <input type="button" value="2" onclick="pridej('2')">
-    <input type="button" value="3" onclick="pridej('3')">
-    <input type="button" value="-" onclick="pridej('-')">
+    <input type="button" value="7" onclick="add('7')">
+    <input type="button" value="8" onclick="add('8')">
+    <input type="button" value="9" onclick="add('9')">
+    <input type="button" value="/" onclick="add('/')">
 
-    <input type="button" value="0" onclick="pridej('0')">
-    <input type="button" value="." onclick="pridej('.')">
-    <input type="button" value="=" onclick="Vypocet()">
-    <input type="button" value="+" onclick="pridej('+')">
+    <input type="button" value="4" onclick="add('4')">
+    <input type="button" value="5" onclick="add('5')">
+    <input type="button" value="6" onclick="add('6')">
+    <input type="button" value="*" onclick="add('*')">
 
-<input type="button" id="tl1" value="π" onclick="Pi()"> 
-    <input type="button" id="tl2" value="√" onclick="Odmocnina()"> 
-    <input type="button" id="tl3" value="xʸ" onclick="Mocnina()"> 
-    <input type="button" id="tl4" value="%" onclick="pridej('/100')"> 
-    <input type="button" id="tl5" value="AVG" onclick="Prumer()"> 
-    <input type="button" id="tl6" value="C" onclick="ClearPole()"> 
-    <input type="button" id="tl7" value="SCI" onclick="PrepniScience()"> 
-    <input type="button" value="(" onclick="pridej('(')"> 
-    <input type="button" value=")" onclick="pridej(')')">
-</div>
+    <input type="button" value="1" onclick="add('1')">
+    <input type="button" value="2" onclick="add('2')">
+    <input type="button" value="3" onclick="add('3')">
+    <input type="button" value="-" onclick="add('-')">
 
-<div id="vysledek">
-Výsledek:
-</div>
+    <input type="button" value="0" onclick="add('0')">
+    <input type="button" value="." onclick="add('.')">
 
-<div id="Pythagor" style="display:none;">
+    <input type="button" value="=" onclick="calc()">
+    <input type="button" value="+" onclick="add('+')">
 
-    <h2>Pythagorova věta 📐</h2>
+    <!-- NOVÉ BASIC FUNKCE -->
+    <input type="button" value="√" onclick="add('Math.sqrt(')">
+    <input type="button" value="xʸ" onclick="add('**')">
+    <input type="button" value="AVG" onclick="avg()">
+    <input type="button" value="C" onclick="clearAll()">
 
-    <div class="py-grid">
-
-        <input
-            type="number"
-            id="A"
-            placeholder="A"
-        >
-
-        <input
-            type="number"
-            id="B"
-            placeholder="B"
-        >
-
-        <input
-            type="number"
-            id="C"
-            placeholder="C"
-        >
-
-    </div>
-
-    <br>
-
-    <input
-        type="button"
-        value="Spočítat"
-        onclick="Pythagor()"
-    >
+    <input type="button" value="(" onclick="add('(')">
+    <input type="button" value=")" onclick="add(')')">
 
 </div>
 
-<div class="feedback">
+</div>
 
-<h3>Feedback</h3>
+<!-- SCIENCE -->
+<div id="science" style="display:none;">
 
-<input
-    type="text"
-    name="hodnoceni"
-    placeholder="1–10"
->
+<div class="science">
 
-<br><br>
+    <input type="button" value="sin" onclick="add('Math.sin(')">
+    <input type="button" value="cos" onclick="add('Math.cos(')">
+    <input type="button" value="tan" onclick="add('Math.tan(')">
+    <input type="button" value="π" onclick="add('3.141592')">
 
-<input
-    type="button"
-    value="Odeslat feedback"
-    onclick="Feedback()"
->
+    <input type="button" value="7" onclick="add('7')">
+    <input type="button" value="8" onclick="add('8')">
+    <input type="button" value="9" onclick="add('9')">
+    <input type="button" value="/" onclick="add('/')">
+
+    <input type="button" value="4" onclick="add('4')">
+    <input type="button" value="5" onclick="add('5')">
+    <input type="button" value="6" onclick="add('6')">
+    <input type="button" value="*" onclick="add('*')">
+
+    <input type="button" value="1" onclick="add('1')">
+    <input type="button" value="2" onclick="add('2')">
+    <input type="button" value="3" onclick="add('3')">
+    <input type="button" value="-" onclick="add('-')">
+
+    <input type="button" value="0" onclick="add('0')">
+    <input type="button" value="." onclick="add('.')">
+    <input type="button" value="%" onclick="add('/100')">
+    <input type="button" value="+" onclick="add('+')">
 
 </div>
+
+</div>
+
+<input type="button" value="SCI" onclick="toggle()">
+
+</div>
+
+<div id="vysledek">Výsledek:</div>
 
 </form>
 
-<script type="module">
+<script>
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+let science = false;
 
-import {
-    getFirestore,
-    collection,
-    addDoc
+function add(v){
+    document.getElementById("display").value += v;
 }
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const firebaseConfig = {
-
-    apiKey: "TVŮJ_API_KEY",
-
-    authDomain:
-    "kalkulacka-github.firebaseapp.com",
-
-    projectId:
-    "kalkulacka-github"
-};
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-window.Feedback = async function () {
-
-    let hodnoceni =
-        parseInt(document.F1.hodnoceni.value);
-
-    if (isNaN(hodnoceni)) {
-
-        alert("Zadej číslo!");
-        return;
+function calc(){
+    try {
+        let r = eval(document.getElementById("display").value);
+        document.getElementById("vysledek").innerText = "Výsledek: " + r;
+    } catch {
+        document.getElementById("vysledek").innerText = "Chyba";
     }
+}
 
-    await addDoc(
-        collection(db, "feedbacks"),
-        {
-            text: hodnoceni,
-            time: new Date()
-        }
-    );
+function clearAll(){
+    document.getElementById("display").value = "";
+    document.getElementById("vysledek").innerText = "Výsledek:";
+}
 
-    document.F1.hodnoceni.value = "";
+// AVG (průměr z +)
+function avg(){
+    let t = document.getElementById("display").value;
+    let nums = t.split("+").map(Number);
+    let s = nums.reduce((a,b)=>a+b,0);
+    document.getElementById("vysledek").innerText =
+        "Výsledek: " + (s/nums.length);
+}
 
-    if (hodnoceni > 3) {
+function toggle(){
+    science = !science;
 
-        window.location.replace(
-            "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-        );
+    document.getElementById("basic").style.display =
+        science ? "none" : "block";
 
-    } else {
-
-        alert("Děkuji za feedback!");
-    }
-};
+    document.getElementById("science").style.display =
+        science ? "block" : "none";
+}
 
 </script>
 
