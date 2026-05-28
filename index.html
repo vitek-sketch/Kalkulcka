@@ -347,6 +347,17 @@ function Pythagor(){
         setResult("Nech jedno pole prázdné");
     }
 }
+    function calculate(){
+    let input = document.getElementById("expr").value;
+
+    try {
+        let result = eval(
+            input.replace(/×/g,"*").replace(/÷/g,"/")
+        );
+        setResult(result);
+    } catch(e){
+        setResult("Chyba");
+    }
 
 </script>
 
