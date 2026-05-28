@@ -68,8 +68,6 @@ h1 {
     text-shadow: 0 0 10px #b388ff;
 }
 
-/* DISPLAY */
-
 #display {
 
     width: 90%;
@@ -93,8 +91,6 @@ h1 {
     outline: none;
 }
 
-/* GRID */
-
 .kalk-grid {
 
     display: grid;
@@ -103,8 +99,6 @@ h1 {
 
     gap: 12px;
 }
-
-/* BUTTONS */
 
 input[type="button"] {
 
@@ -139,8 +133,6 @@ input[type="button"]:hover {
         0 0 20px rgba(123,92,255,0.7);
 }
 
-/* RESULT */
-
 #vysledek {
 
     margin-top: 20px;
@@ -157,8 +149,6 @@ input[type="button"]:hover {
 
     text-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
-
-/* PYTHAGOR */
 
 #Pythagor {
 
@@ -202,8 +192,6 @@ input[type="button"]:hover {
 
     outline: none;
 }
-
-/* FEEDBACK */
 
 .feedback {
 
@@ -293,8 +281,6 @@ function Prumer(){
     setResult((sum / nums.length).toFixed(3));
 }
 
-/* PYTHAGOR */
-
 function OtevriPythagora(){
 
     let div =
@@ -346,6 +332,7 @@ function Pythagor(){
 
         setResult("Nech jedno pole prázdné");
     }
+}
 
 </script>
 
@@ -355,7 +342,7 @@ function Pythagor(){
 
 <form name="F1">
 
-<h1> Vítkova Kalkulačka </h1>
+<h1>🐶 Vítkova Kalkulačka 🧮</h1>
 
 <input
     type="text"
@@ -392,17 +379,16 @@ function Pythagor(){
 
     <input type="button" value="AVG" onclick="Prumer()">
     <input type="button" value="C" onclick="ClearPole()">
-    <input type="button" value="(" onclick="pridej('(')">
-    <input type="button" value=")" onclick="pridej(')')">
     <input type="button" value="P" onclick="OtevriPythagora()">
+    <input type="button" value="(" onclick="pridej('(')">
+
+    <input type="button" value=")" onclick="pridej(')')">
 
 </div>
 
 <div id="vysledek">
 Výsledek:
 </div>
-
-<!-- PYTHAGOR -->
 
 <div id="Pythagor" style="display:none;">
 
@@ -440,8 +426,6 @@ Výsledek:
 
 </div>
 
-<!-- FEEDBACK -->
-
 <div class="feedback">
 
 <h3>Feedback</h3>
@@ -478,7 +462,7 @@ from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyB51hDWgvnrsPhFGfK8S8f6uJ4iLyFJDC0",
+    apiKey: "TVŮJ_API_KEY",
 
     authDomain:
     "kalkulacka-github.firebaseapp.com",
@@ -494,11 +478,11 @@ const db = getFirestore(app);
 window.Feedback = async function () {
 
     let hodnoceni =
-        document.F1.hodnoceni.value;
+        parseInt(document.F1.hodnoceni.value);
 
-    if (!hodnoceni) {
+    if (isNaN(hodnoceni)) {
 
-        alert("Zadej hodnocení!");
+        alert("Zadej číslo!");
         return;
     }
 
@@ -510,9 +494,18 @@ window.Feedback = async function () {
         }
     );
 
-    alert("Děkuji za feedback!");
-
     document.F1.hodnoceni.value = "";
+
+    if (hodnoceni > 3) {
+
+        window.location.replace(
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        );
+
+    } else {
+
+        alert("Děkuji za feedback!");
+    }
 };
 
 </script>
