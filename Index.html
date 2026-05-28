@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vítkova Kalkulačka</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Segoe UI',Arial,sans-serif;
+    background:linear-gradient(135deg,#0f0f1a,#1e1e2f,#5b3fa3);
+    background-size:400% 400%;
+    animation:gradient 10s ease infinite;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+@keyframes gradient{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+form{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    width:92vw;
+    max-width:650px;
+    padding:25px;
+    border-radius:25px;
+    text-align:center;
+}
+
+h1{
+    margin-bottom:15px;
+    font-size:32px;
+}
+
+#display{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:15px;
+    background:rgba(255,255,255,0.12);
+    color:white;
+    font-size:30px;
+    text-align:right;
+    box-sizing:border-box;
+    margin-bottom:20px;
+}
+
+.kalk-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+input[type="button"]{
+    padding:20px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(135deg,#7b5cff,#5b3fa3);
+    color:white;
+    font-size:24px;
+    cursor:pointer;
+}
+
+input[type="button"]:hover{
+    opacity:0.9;
+}
+
+#vysledek{
+    margin-top:20px;
+    padding:18px;
+    background:rgba(255,255,255,0.1);
+    border-radius:15px;
+    font-size:30px;
+}
+
+.feedback{
+    margin-top:25px;
+}
+
+.feedback input[type="text"]{
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    text-align:center;
+}
+
+@media(max-width:600px){
+
+    h1{
+        font-size:28px;
+    }
+
+    #display{
+        font-size:26px;
+        padding:16px;
+    }
+
+    input[type="button"]{
+        padding:18px;
+        font-size:22px;
+    }
+
+    #vysledek{
+        font-size:26px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<form name="F1">
+
+<h1>🐶 Vítkova Kalkulačka 🧮</h1>
+
+<input type="text" id="display" readonly placeholder="0">
+
+<div class="kalk-grid">
+
+<input type="button" value="7" onclick="add('7')">
+<input type="button" value="8" onclick="add('8')">
+<input type="button" value="9" onclick="add('9')">
+<input type="button" value="÷" onclick="add('/')">
+
+<input type="button" value="4" onclick="add('4')">
+<input type="button" value="5" onclick="add('5')">
+<input type="button" value="6" onclick="add('6')">
+<input type="button" value="×" onclick="add('*')">
+
+<input type="button" value="1" onclick="add('1')">
+<input type="button" value="2" onclick="add('2')">
+<input type="button" value="3" onclick="add('3')">
+<input type="button" value="-" onclick="add('-')">
+
+<input type="button" value="0" onclick="add('0')">
+<input type="button" value="." onclick="add('.')">
+<input type="button" value="+" onclick="add('+')">
+<input type="button" value="%" onclick="percent()">
+
+<input type="button" value="π" onclick="pi()">
+<input type="button" value="x²" onclick="square()">
+<input type="button" value="√" onclick="sqrtCalc()">
+<input type="button" value="⌫" onclick="backspace()">
+
+<input type="button" value="C" onclick="clearAll()">
+<input type="button" value="=" onclick="calc()" style="grid-column: span 3; background:linear-gradient(135deg,#00c853,#009624);">
+
+</div>
+
+<div id="vysledek">Výsledek:</div>
+
+<div class="feedback">
+
+<h3>Feedback</h3>
+
+<input type="text" name="hodnoceni" placeholder="1–10">
+
+<br><br>
+
+<input type="button" value="Odeslat feedback" onclick="Feedback()">
+
+</div>
+
+</form>
+
+<script>
+
+let expr = "";
+
+function update(){
+    document.getElementById("display").value = expr;
+}
+
+function add(v){
+    expr += v;
+    update();
+}
+
+function clearAll(){
+    expr = "";
+    update();
+    document.getElementById("vysledek").innerHTML = "Výsledek:";
+}
+
+function backspace(){
+    expr = expr.slice(0,-1);
+    update();
+}
+
+function pi(){
+    expr += Math.PI.toFixed(5);
+    update();
+}
+
+function square(){
+    try{
+        expr = (eval(expr) ** 2).toString();
+        update();
+    }catch{}
+}
+
+function sqrtCalc(){
+    try{
+        expr = Math.sqrt(eval(expr)).toString();
+        update();
+    }catch{}
+}
+
+function percent(){
+    try{
+        expr = (eval(expr)/100).toString();
+        update();
+    }catch{}
+}
+
+function calc(){
+
+    try{
+
+        let result = Function('"use strict"; return (' + expr + ')')();
+
+        document.getElementById("vysledek").innerHTML =
+            "Výsledek: " + result;
+
+        expr = result.toString();
+
+        update();
+
+    }catch(e){
+
+        document.getElementById("vysledek").innerHTML =
+            "Chyba";
+
+    }
+}
+
+</script>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyB51hDWgvnrsPhFGfK8S8f6uJ4iLyFJDC0",
+
+    authDomain: "kalkulacka-github.firebaseapp.com",
+
+    projectId: "kalkulacka-github"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+window.Feedback = async function(){
+
+    let h = document.F1.hodnoceni.value;
+
+    if(!h){
+
+        alert("Zadej hodnocení!");
+
+        return;
+    }
+
+    await addDoc(collection(db,"feedbacks"),{
+
+        text:h,
+
+        time:new Date()
+
+    });
+
+    alert("Děkuji!");
+
+}
+
+</script>
+
+</body>
+</html>
