@@ -239,6 +239,16 @@ function Prumer(){
         nums.reduce((a,b)=>a+b,0);
 
     setResult(sum / nums.length);
+    function PythagorovaVeta(){
+
+    let x = getX();
+    let y = getY();
+
+    let vysledek = Math.sqrt((x*x) + (y*y));
+
+    setResult(vysledek.toFixed(3));
+}
+
 }
 
 </script>
@@ -286,6 +296,7 @@ function Prumer(){
 
     <input type="button" value="AVG" onclick="Prumer()">
     <input type="button" value="C" onclick="ClearPole()">
+    <input type="button" value="P" onclick="PythagorovaVeta()">
 
 </div>
 
