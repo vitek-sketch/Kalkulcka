@@ -239,16 +239,56 @@ function Prumer(){
         nums.reduce((a,b)=>a+b,0);
 
     setResult(sum / nums.length);
-    function PythagorovaVeta(){
+function OtevriPythagora(){
 
-    let x = getX();
-    let y = getY();
+    let div =
+        document.getElementById("pythagor");
 
-    let vysledek = Math.sqrt((x*x) + (y*y));
+    if(div.style.display == "none"){
 
-    setResult(vysledek.toFixed(3));
+        div.style.display = "block";
+
+    } else {
+
+        div.style.display = "none";
+    }
 }
 
+function Pythagor(){
+
+    let a =
+        document.getElementById("A").value;
+
+    let b =
+        document.getElementById("B").value;
+
+    let c =
+        document.getElementById("C").value;
+
+    if(c == ""){
+
+        c = Math.sqrt(a*a + b*b);
+
+        setResult("C = " + c.toFixed(3));
+    }
+
+    else if(a == ""){
+
+        a = Math.sqrt(c*c - b*b);
+
+        setResult("A = " + a.toFixed(3));
+    }
+
+    else if(b == ""){
+
+        b = Math.sqrt(c*c - a*a);
+
+        setResult("B = " + b.toFixed(3));
+    }
+
+    document.getElementById("pythagor").style.display =
+        "none";
+}
 }
 
 </script>
@@ -296,7 +336,7 @@ function Prumer(){
 
     <input type="button" value="AVG" onclick="Prumer()">
     <input type="button" value="C" onclick="ClearPole()">
-    <input type="button" value="P" onclick="PythagorovaVeta()">
+    <input type="button" value="P" onclick="OtevriPythagora()">
 
 </div>
 
@@ -321,6 +361,23 @@ Výsledek:
     value="Odeslat feedback"
     onclick="Feedback()"
 >
+
+</div>
+    <div id="pythagor" style="display:none; margin-bottom:20px;">
+
+    <input type="number" id="A" placeholder="A">
+
+    <input type="number" id="B" placeholder="B">
+
+    <input type="number" id="C" placeholder="C">
+
+    <br><br>
+
+    <input
+        type="button"
+        value="Spočítat"
+        onclick="Pythagor()"
+    >
 
 </div>
 
