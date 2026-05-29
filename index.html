@@ -8,81 +8,126 @@
 
 <style>
 
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg,#0f0f1a,#1e1e2f,#5b3fa3);
-    background-size: 400% 400%;
-    animation: gradient 10s ease infinite;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
+body{
+    margin:0;
+    font-family:'Segoe UI',Arial,sans-serif;
+    background:linear-gradient(135deg,#0f0f1a,#1e1e2f,#5b3fa3);
+    background-size:400% 400%;
+    animation:gradient 10s ease infinite;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
 }
 
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+@keyframes gradient{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
 }
 
-form {
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(12px);
-    width: 520px;
-    max-width: 92vw;
-    padding: 30px;
-    border-radius: 25px;
-    text-align: center;
+form{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    width:560px;
+    max-width:92vw;
+    padding:30px;
+    border-radius:25px;
+    text-align:center;
 }
 
-#display {
-    width: 90%;
-    padding: 18px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 15px;
-    background: rgba(255,255,255,0.12);
-    color: white;
-    font-size: 28px;
-    text-align: right;
+h1{
+    margin-bottom:20px;
 }
 
-.kalk-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+#display{
+    width:90%;
+    padding:18px;
+    margin-bottom:20px;
+    border:none;
+    border-radius:15px;
+    background:rgba(255,255,255,0.12);
+    color:white;
+    font-size:28px;
+    text-align:right;
+    outline:none;
 }
 
-input[type="button"] {
-    padding: 18px;
-    border: none;
-    border-radius: 15px;
-    background: linear-gradient(135deg,#7b5cff,#5b3fa3);
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
+.kalk-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
 }
 
-input[type="button"]:hover {
-    transform: scale(1.05);
+input[type="button"]{
+    width:100%;
+    height:70px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(135deg,#7b5cff,#5b3fa3);
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.2s;
 }
 
-#vysledek {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 15px;
-    background: rgba(255,255,255,0.1);
-    font-size: 28px;
+input[type="button"]:hover{
+    transform:scale(1.05);
 }
 
-.basic, .science {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+#vysledek{
+    margin-top:20px;
+    padding:15px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.1);
+    font-size:28px;
+    word-wrap:break-word;
+}
+
+.mode{
+    margin-top:15px;
+}
+
+/* PYTHAGOR */
+#Pythagor{
+    margin-top:25px;
+    padding:20px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.08);
+}
+
+.py-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
+.py-grid input{
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:rgba(255,255,255,0.12);
+    color:white;
+    text-align:center;
+    font-size:20px;
+    outline:none;
+    width:70px;
+    height:50px;
+    padding:6px;
+}
+
+#feedback{
+    width:90%;
+    margin-top:20px;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:rgba(255,255,255,0.12);
+    color:white;
+    font-size:16px;
 }
 
 </style>
@@ -90,28 +135,30 @@ input[type="button"]:hover {
 
 <body>
 
-<form>
+<form onsubmit="return false">
 
 <h1>🐶 Vítkova Kalkulačka 🧮</h1>
 
-<input id="display" type="text">
-
-<div class="kalk-grid">
+<input
+    id="display"
+    type="text"
+    placeholder="Zadej příklad..."
+>
 
 <!-- BASIC -->
 <div id="basic">
 
-<div class="basic">
+<div class="kalk-grid">
 
     <input type="button" value="7" onclick="add('7')">
     <input type="button" value="8" onclick="add('8')">
     <input type="button" value="9" onclick="add('9')">
-    <input type="button" value="/" onclick="add('/')">
+    <input type="button" value="÷" onclick="add('/')">
 
     <input type="button" value="4" onclick="add('4')">
     <input type="button" value="5" onclick="add('5')">
     <input type="button" value="6" onclick="add('6')">
-    <input type="button" value="*" onclick="add('*')">
+    <input type="button" value="×" onclick="add('*')">
 
     <input type="button" value="1" onclick="add('1')">
     <input type="button" value="2" onclick="add('2')">
@@ -120,18 +167,18 @@ input[type="button"]:hover {
 
     <input type="button" value="0" onclick="add('0')">
     <input type="button" value="." onclick="add('.')">
-
     <input type="button" value="=" onclick="calc()">
     <input type="button" value="+" onclick="add('+')">
 
-    <!-- NOVÉ BASIC FUNKCE -->
-    <input type="button" value="√" onclick="add('Math.sqrt(')">
-    <input type="button" value="xʸ" onclick="add('**')">
-    <input type="button" value="AVG" onclick="avg()">
-    <input type="button" value="C" onclick="clearAll()">
-
     <input type="button" value="(" onclick="add('(')">
     <input type="button" value=")" onclick="add(')')">
+    <input type="button" value="√" onclick="add('Math.sqrt(')">
+    <input type="button" value="xʸ" onclick="add('**')">
+
+    <input type="button" value="AVG" onclick="avg()">
+    <input type="button" value="π" onclick="add('Math.PI')">
+    <input type="button" value="%" onclick="add('/100')">
+    <input type="button" value="C" onclick="clearAll()">
 
 </div>
 
@@ -140,22 +187,22 @@ input[type="button"]:hover {
 <!-- SCIENCE -->
 <div id="science" style="display:none;">
 
-<div class="science">
+<div class="kalk-grid">
 
-    <input type="button" value="sin" onclick="add('Math.sin(')">
-    <input type="button" value="cos" onclick="add('Math.cos(')">
-    <input type="button" value="tan" onclick="add('Math.tan(')">
-    <input type="button" value="π" onclick="add('3.141592')">
+    <input type="button" value="sin" onclick="add('sin(')">
+    <input type="button" value="cos" onclick="add('cos(')">
+    <input type="button" value="tan" onclick="add('tan(')">
+    <input type="button" value="π" onclick="add('Math.PI')">
 
     <input type="button" value="7" onclick="add('7')">
     <input type="button" value="8" onclick="add('8')">
     <input type="button" value="9" onclick="add('9')">
-    <input type="button" value="/" onclick="add('/')">
+    <input type="button" value="÷" onclick="add('/')">
 
     <input type="button" value="4" onclick="add('4')">
     <input type="button" value="5" onclick="add('5')">
     <input type="button" value="6" onclick="add('6')">
-    <input type="button" value="*" onclick="add('*')">
+    <input type="button" value="×" onclick="add('*')">
 
     <input type="button" value="1" onclick="add('1')">
     <input type="button" value="2" onclick="add('2')">
@@ -164,53 +211,102 @@ input[type="button"]:hover {
 
     <input type="button" value="0" onclick="add('0')">
     <input type="button" value="." onclick="add('.')">
-    <input type="button" value="%" onclick="add('/100')">
+    <input type="button" value="=" onclick="calc()">
     <input type="button" value="+" onclick="add('+')">
 
+    <input type="button" value="(" onclick="add('(')">
+    <input type="button" value=")" onclick="add(')')">
+    <input type="button" value="Pyth" onclick="showPythagor()">
+    <input type="button" value="C" onclick="clearAll()">
+
+</div>
+
+</div>
+
+<div class="mode">
+    <input type="button" value="SCI MODE" onclick="toggle()">
+</div>
+
+<div id="vysledek">
+    Výsledek:
+</div>
+
+<!-- PYTHAGOR -->
+<div id="Pythagor" style="display:none;">
+
+<h2>Pythagorova věta</h2>
+
+<div class="py-grid">
+
+    <input type="number" id="A" placeholder="a">
+    <input type="number" id="B" placeholder="b">
+    <input type="number" id="C" placeholder="c">
+
+    <input
+        type="button"
+        value="Vypočítat"
+        onclick="pythagoras()"
+    >
+
 </div>
 
 </div>
 
-<input type="button" value="SCI" onclick="toggle()">
+<!-- FEEDBACK -->
 
-</div>
+<h3>Feedback</h3>
 
-<div id="vysledek">Výsledek:</div>
+<input
+    type="text"
+    id="feedback"
+    placeholder="1–10 nebo názor"
+>
+
+<br><br>
+
+<input
+    type="button"
+    value="Odeslat feedback"
+    onclick="sendFeedback()"
+>
 
 </form>
 
-<script>
+<script type="module">
 
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc
+}
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+/* FIREBASE */
+const firebaseConfig = {
+
+    apiKey: "TVŮJ_API_KEY",
+
+    authDomain:
+    "kalkulacka-github.firebaseapp.com",
+
+    projectId:
+    "kalkulacka-github"
+};
+
+const app =
+    initializeApp(firebaseConfig);
+
+const db =
+    getFirestore(app);
+
+/* SCI MODE */
 let science = false;
 
-function add(v){
-    document.getElementById("display").value += v;
-}
+window.toggle = function(){
 
-function calc(){
-    try {
-        let r = eval(document.getElementById("display").value);
-        document.getElementById("vysledek").innerText = "Výsledek: " + r;
-    } catch {
-        document.getElementById("vysledek").innerText = "Chyba";
-    }
-}
-
-function clearAll(){
-    document.getElementById("display").value = "";
-    document.getElementById("vysledek").innerText = "Výsledek:";
-}
-
-// AVG (průměr z +)
-function avg(){
-    let t = document.getElementById("display").value;
-    let nums = t.split("+").map(Number);
-    let s = nums.reduce((a,b)=>a+b,0);
-    document.getElementById("vysledek").innerText =
-        "Výsledek: " + (s/nums.length);
-}
-
-function toggle(){
     science = !science;
 
     document.getElementById("basic").style.display =
@@ -219,6 +315,205 @@ function toggle(){
     document.getElementById("science").style.display =
         science ? "block" : "none";
 }
+
+/* ADD */
+window.add = function(v){
+
+    document.getElementById("display").value += v;
+}
+
+/* CALC */
+window.calc = function(){
+
+    try{
+
+        let expression =
+            document.getElementById("display").value;
+
+        let result =
+            eval(expression);
+
+        document.getElementById("vysledek").innerText =
+            "Výsledek: " + result;
+
+    }catch{
+
+        document.getElementById("vysledek").innerText =
+            "Chyba";
+    }
+}
+
+/* CLEAR */
+window.clearAll = function(){
+
+    document.getElementById("display").value = "";
+
+    document.getElementById("vysledek").innerText =
+        "Výsledek:";
+}
+
+/* AVG */
+window.avg = function(){
+
+    try{
+
+        let t =
+            document.getElementById("display").value;
+
+        let nums =
+            t.match(/-?\d+(\.\d+)?/g);
+
+        if(!nums){
+
+            document.getElementById("vysledek").innerText =
+                "Chyba";
+
+            return;
+        }
+
+        nums = nums.map(Number);
+
+        let sum =
+            nums.reduce((a,b)=>a+b,0);
+
+        let result =
+            sum / nums.length;
+
+        document.getElementById("vysledek").innerText =
+            "Výsledek: " + result;
+
+    }catch{
+
+        document.getElementById("vysledek").innerText =
+            "Chyba";
+    }
+}
+
+/* PYTHAGOR SHOW */
+window.showPythagor = function(){
+
+    let box =
+        document.getElementById("Pythagor");
+
+    if(box.style.display === "none"){
+
+        box.style.display = "block";
+
+    }else{
+
+        box.style.display = "none";
+    }
+}
+
+/* PYTHAGOR */
+window.pythagoras = function(){
+
+    let a =
+        document.getElementById("A").value;
+
+    let b =
+        document.getElementById("B").value;
+
+    let c =
+        document.getElementById("C").value;
+
+    let filled = 0;
+
+    if(a !== "") filled++;
+    if(b !== "") filled++;
+    if(c !== "") filled++;
+
+    if(filled < 2){
+
+        document.getElementById("vysledek").innerText =
+            "Zadej 2 čísla";
+
+        return;
+    }
+
+    a = Number(a);
+    b = Number(b);
+    c = Number(c);
+
+    if(document.getElementById("C").value === ""){
+
+        c = Math.sqrt(a*a + b*b);
+
+        document.getElementById("C").value =
+            c.toFixed(3);
+
+        document.getElementById("vysledek").innerText =
+            "Přepona c = " + c.toFixed(3);
+    }
+
+    else if(document.getElementById("A").value === ""){
+
+        a = Math.sqrt(c*c - b*b);
+
+        document.getElementById("A").value =
+            a.toFixed(3);
+
+        document.getElementById("vysledek").innerText =
+            "Odvěsna a = " + a.toFixed(3);
+    }
+
+    else if(document.getElementById("B").value === ""){
+
+        b = Math.sqrt(c*c - a*a);
+
+        document.getElementById("B").value =
+            b.toFixed(3);
+
+        document.getElementById("vysledek").innerText =
+            "Odvěsna b = " + b.toFixed(3);
+    }
+}
+
+/* FEEDBACK */
+window.sendFeedback = async function(){
+
+    let text =
+        document.getElementById("feedback").value;
+
+    if(text === ""){
+
+        alert("Napiš feedback");
+        return;
+    }
+
+    await addDoc(
+        collection(db, "feedbacks"),
+        {
+            text: text,
+            time: new Date()
+        }
+    );
+
+    alert("Díky za feedback ❤️");
+
+    document.getElementById("feedback").value = "";
+}
+
+/* STUPNĚ místo radiánů */
+window.sin = function(x){
+    return Math.sin(x * Math.PI / 180);
+}
+
+window.cos = function(x){
+    return Math.cos(x * Math.PI / 180);
+}
+
+window.tan = function(x){
+    return Math.tan(x * Math.PI / 180);
+}
+
+/* ENTER */
+document.addEventListener("keydown",function(e){
+
+    if(e.key === "Enter"){
+        calc();
+    }
+});
 
 </script>
 
